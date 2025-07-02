@@ -31,5 +31,11 @@ Fig. 2. Box and whisker plot of price versus age (bins)
 From the above graph, we can see that cars that are less than 10 years old can fetch the highest price with a median of $23,000. As the age of the vehicle increases, the price keeps moving downwards until about 30 years of age. After 30 years of age, we see that the median price tends to creep up again. One factor for this is well-maintained vintage cars that can fetch a handsome price in the used car market.
 
 ![image](https://github.com/user-attachments/assets/d401e99c-e822-4b17-9ac1-c71b62fc8257)
+The graph above shows the top 10 models versus price. The graph shows that models like GMC, RAM, Dodge (which are usually pickup trucks), and Jeep have higher median prices. Vehicles by Toyota also shown to have a median range of about $10,000.
+Used car dealership could do well to stock pickup trucks and specific vehicle models that have higher median prices like Toyota's, and BMWs
+
+![image](https://github.com/user-attachments/assets/75561120-3757-4362-a05e-39ce433d7238)
+The graph above shows the odometer range (bins) versus price. Here we see that vehicles with under 10,000 miles have a wide range of values with the first quartile at approximately $12,000 and a third quartile at approximately $39,000 with a median of approximately $32,000. Intuitively, we see that the median values decline as the odometer range increases. Therefore, it would be a good idea to stock vehicles with lower mileage numbers, especially, vehicles under 60,000 miles. We see a significant drop in the median price after the 60,000 mile mark. 
+
 
 
