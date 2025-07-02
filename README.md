@@ -31,11 +31,29 @@ Fig. 2. Box and whisker plot of price versus age (bins)
 From the above graph, we can see that cars that are less than 10 years old can fetch the highest price with a median of $23,000. As the age of the vehicle increases, the price keeps moving downwards until about 30 years of age. After 30 years of age, we see that the median price tends to creep up again. One factor for this is well-maintained vintage cars that can fetch a handsome price in the used car market.
 
 ![image](https://github.com/user-attachments/assets/d401e99c-e822-4b17-9ac1-c71b62fc8257)
+Fig. 3. Box and whisker plot of price versus top 10 models
+
 The graph above shows the top 10 models versus price. The graph shows that models like GMC, RAM, Dodge (which are usually pickup trucks), and Jeep have higher median prices. Vehicles by Toyota also shown to have a median range of about $10,000.
 Used car dealership could do well to stock pickup trucks and specific vehicle models that have higher median prices like Toyota's, and BMWs
 
 ![image](https://github.com/user-attachments/assets/75561120-3757-4362-a05e-39ce433d7238)
+Fig. 4. Box and whisker plot of price versus odometer range (bins)
+
 The graph above shows the odometer range (bins) versus price. Here we see that vehicles with under 10,000 miles have a wide range of values with the first quartile at approximately $12,000 and a third quartile at approximately $39,000 with a median of approximately $32,000. Intuitively, we see that the median values decline as the odometer range increases. Therefore, it would be a good idea to stock vehicles with lower mileage numbers, especially, vehicles under 60,000 miles. We see a significant drop in the median price after the 60,000 mile mark. 
+
+![image](https://github.com/user-attachments/assets/9acb1ce7-b4cd-440e-9c84-92931f79057e)
+Fig. 5. Box and whisker plot of price versus condition
+
+The graph above shows the condition versus price. We can see that the vehicles that are good, excellent, like new and new have the highest median prices. Vehicles that are salvage and a fair condition have significantly less value. 
+It is best for used car dealership to stock vehicles that are good, excellent and like-new in the lots.
+
+![image](https://github.com/user-attachments/assets/3ed81eaf-88dd-4d53-8cd1-b9ef47b638ba)
+Fig. 6. Box and whisker plot of price versus title status
+
+The graph shows the relationship between price and title status. Vehicles that have a clean title and lien have the highest median values of approximately $15,000 and $12,000 respectively. Vehicles with missing or parts only title staters have the lowest median values. This is an expected result because cars with a clean title usually have higher prices.
+
+
+
 
 
 
