@@ -53,6 +53,39 @@ Fig. 6. Box and whisker plot of price versus title status
 The graph shows the relationship between price and title status. Vehicles that have a clean title and lien have the highest median values of approximately $15,000 and $12,000 respectively. Vehicles with missing or parts only title staters have the lowest median values. This is an expected result because cars with a clean title usually have higher prices.
 
 
+## Data Preparation
+For the data preparation stage, now wanted to clearly understand the outliers in the price. I went ahead and filtered the data frame for price under $55,000 which represents the 99th percentile of prices.
+This was followed by a univariate linear regression of the numerical values/columns. I started with cylinders versus price.After fitting the model, I noticed that the RMSE was really huge at approximately 11,400. This shows that the model is not fitting well with the data.
+In order to understand further, I scatterplot the price versus cylinders to see if a linear model can fit the data. The graph is shown below in Figure 7. 
+
+![image](https://github.com/user-attachments/assets/0d396067-0b0b-4fef-ba5e-f10c518a6a06)
+Fig. 7. Scatterplot of price versus cylinders
+
+Just looking at the scatter plot from price and cylinders, we know that a linear regression model will not work. The data is not linear at all!
+
+I built a linear regression model of price versus odometer and the scatterplot is shown below in Figure 8. 
+![image](https://github.com/user-attachments/assets/94a34eee-fc0c-4a9d-934a-884addc0c936)
+
+The graph shows that there are outliers in the far right of the graph with 10,000,000 miles. This seems really unrealistic for a car and must be bad data.I decided to drop all data are above 200,000 miles and the scatterplot is shown below.
+
+![image](https://github.com/user-attachments/assets/52fa7186-c94a-4490-9508-c910b3c1ba90)
+Fig. 8. Scatterplot of price versus odometer
+
+Even this data is nonlinear and a linear regression model did not provide any meaningful results.
+
+![image](https://github.com/user-attachments/assets/7204b008-d7f4-40f8-89fb-4b3d2511d746)
+Fig. 9. Scatterplot of price versus age (60 years)
+
+I proceeded to build the linear model for price versus age. In the scatter plot shown in Figure 9, I noticed that the data is definitely nonlinear. Especially for vehicles after 40 years, the prices were all over the place.
+
+Therefore, I decided to truncate the data to only include vehicles that were 40 years old. The scatter plot is shown in Figure 10 below. This to did not provide any good linear regression results because the data was not linear.
+
+![image](https://github.com/user-attachments/assets/990c9728-001e-4120-9e1c-6412af687445)
+Fig. 10. Scatterplot of price versus age (40 years)
+
+Since the price data was nonlinear, I decided to look at creating the log of price. With this transformation, I reran the linear regression and noticed that the results were much better with the RMSE at 0.63. 
+Based on this result, I one hot encoded the categorical columns and appended that to the numerical columns and assigned that as X. the log of price on the other hand was assigned as y. This is the basis for the linear regression models.
+
 
 
 
