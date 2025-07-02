@@ -23,7 +23,7 @@ Fig. 1. Box and whisker plot of price versus cylinders
 
 From the above graph, we can see that cars with four cylinders have a tight range with a median of around $8000. However, it has a huge number of outliers that go all the way up to approximately $50,000.
 Another interesting thing from the graph, cars with six cylinders have a median of approximately $13,000 with the third quartile (75%) of the data at $28,000. Vehicles with 8 cylinders have a median value of $15,000 and a spread that is similar to the cars with 6 cylinders. Vehicles with 10 to 12 cylinders have median values that are less than cars with 6 or 8 cylinders.
-As a general rule of thumb, I would propose that used car dealerships stock vehicles with 6, and 8 cylinders.  These vehicles can be sold at a higher price with the greater profit margin. Used car dealership should also stock 4 cylinder vehicles because this car is in demand by customers. 
+I would propose that used car dealerships stock vehicles with 6, and 8 cylinders.  These vehicles can be sold at a higher price with the greater profit margin. Used car dealership should also stock 4 cylinder vehicles because this car is in demand by customers. 
 
 ![image](https://github.com/user-attachments/assets/760a44ab-4761-4048-85f5-1c8aa83cf056)
 Fig. 2. Box and whisker plot of price versus age (bins)
@@ -85,6 +85,70 @@ Fig. 10. Scatterplot of price versus age (40 years)
 
 Since the price data was nonlinear, I decided to look at creating the log of price. With this transformation, I reran the linear regression and noticed that the results were much better with the RMSE at 0.63. 
 Based on this result, I one hot encoded the categorical columns and appended that to the numerical columns and assigned that as X. the log of price on the other hand was assigned as y. This is the basis for the linear regression models.
+
+## Modeling 
+The test – train split was done at 20% – 80%. This was done using the sklearn library. 
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+Building a Linear regression pipeline. My machine does not have enough RAM to handle the data during model fitting. 
+Specifically, the matrix being created is ~110,000 rows × ~11,490 columns, which is extremely large. Using PCA, I was able to reduce the dimensionality and the gradient descent converged. Example of the pipeline and used:
+scaled_pipe = Pipeline([
+     ('scaler', StandardScaler()), 
+    ('pca', PCA(n_components=100)), 
+    ('regression', LinearRegression())
+
+After fitting the pipeline, I obtained the following result for the train – test MSE: 
+Train MSE: 0.22215343295568166
+Test MSE: 0.2168855420688496
+------
+#Train RMSE: 0.47
+#Test RMSE: 0.47
+
+This was followed by a Ridge regression with the default alpha set to 1.
+The pipeline model for the Ridge regression is shown below: 
+scaled_pipe = Pipeline([
+    ('scaler', StandardScaler()),
+    ('ridge', Ridge())  #using standard alpha = 1
+    ])
+
+After fitting the pipeline, I obtained the following results: 
+Train MSE: 0.08314456849462178
+Test MSE: 0.10860095836211478
+------
+Train RMSE: 0.29
+Test RMSE: 0.33
+
+The last regression used is Lasso regression with the default alpha set to 1. 
+The pipeline for the Lasso regression is shown below: 
+scaled_pipeline = Pipeline([
+    ('scaler', StandardScaler()),
+    ('lasso', Lasso()) 
+])
+
+After fitting the pipeline I obtained the following results:
+Train MSE: 0.08314454893567798
+Test MSE: 0.10871220357714158
+------
+Train RMSE: 0.29
+Test RMSE: 0.33
+
+All three models show a good value for the RMSE showing that the model could be used to predict the log of price by looking at the coefficients.
+
+## Evaluation
+Using the log of price(y) and all the other features (as X), I am getting pretty good test and train RMSE values. The results showed that both the Ridge and Lasso models could be used to predict the car price. This can be done by using the coefficients from the model. Since I used StandardScaler, the coefficients are based on standardized features, not raw ones. This means that:
+They are still useful for ranking feature importance, but not directly interpretable in dollars for the price.
+In order to make them interpretable in dollars, I need to store the mean and std from StandardScaler and applying the inverse transformation to coefficients (beyond the scope here)
+I will also need to find the inverse log of the price, to make the price results interpretable in dollars. This conversion was made to make the data linear.
+
+## Deployment 
+Based on the EDA and the regression analysis we can conclude the following: 
+As a general rule of thumb, I would propose that used car dealerships stock vehicles with 6, and 8 cylinders.  These vehicles can be sold at a higher price with the greater profit margin. Used car dealership should also stock 4 cylinder vehicles because this car is in demand by customers. 
+Used car dealership should only keep vehicles that are 10 years old. This is to ensure that they can get the best price for these vehicles. Vehicles that are more than 10 years old to not fetch a good price.
+Used car dealership could do well to stock pickup trucks and specific vehicle models that have higher median prices like Toyota's, and BMWs
+It would be a good idea to stock vehicles with lower mileage numbers, especially, vehicles under 60,000 miles. We see a significant drop in the median price after the 60,000 mile mark. 
+It is best for used car dealership to stock vehicles that are good, excellent and like-new in the lots.
+On the data and analysis side, one major issue that I noticed is that the data pattern is  nonlinear. Therefore, the techniques used such as linear regression, Ridge regression and lasso regression may not be the most suitable for modeling this data set. By converting the price to the log of price, we obtain some resemblance of linearity which allowed me to create better models that could predict the log of price versus the features. However, since the coefficients are based on standardized features, they are useful for ranking feature importance but not directly interpretable in dollars. Also, by taking the log of price, then needs to be some conversion to make the price results interpretable in dollars.
+
 
 
 
